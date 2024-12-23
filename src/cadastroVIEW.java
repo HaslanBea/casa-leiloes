@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
-/**
+/**btnCadastrarActionPerformed
  *
  * @author Adm
  */
@@ -140,18 +140,36 @@ public class cadastroVIEW extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastroNomeActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        ProdutosDTO produto = new ProdutosDTO();
-        String nome = cadastroNome.getText();
-        String valor = cadastroValor.getText();
-        String status = "A Venda";
-        produto.setNome(nome);
-        produto.setValor(Integer.parseInt(valor));
-        produto.setStatus(status);
-        
-        ProdutosDAO produtodao = new ProdutosDAO();
-        produtodao.cadastrarProduto(produto);
-        
+        try {
+            // Criação do objeto produto com os dados do formulário
+            ProdutosDTO produto = new ProdutosDTO();
+            String nome = cadastroNome.getText();
+            String valor = cadastroValor.getText();
+            String status = "A Venda";
+    
+            produto.setNome(nome);
+            produto.setValor(Integer.parseInt(valor));
+            produto.setStatus(status);
+    
+            // Chamando o DAO para cadastrar o produto
+            ProdutosDAO produtodao = new ProdutosDAO();
+            boolean sucesso = produtodao.cadastrarProduto(produto);
+    
+            // Exibindo mensagens de sucesso ou erro
+            if (sucesso) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!");
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Erro ao cadastrar o produto.");
+            }
+    
+            // Limpando os campos do formulário
+            cadastroNome.setText("");
+            cadastroValor.setText("");
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Erro ao cadastrar: " + e.getMessage());
+        }
     }//GEN-LAST:event_btnCadastrarActionPerformed
+    //GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
         listagemVIEW listagem = new listagemVIEW(); 
