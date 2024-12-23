@@ -3,6 +3,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javax.swing.table.DefaultTableModel;
+
 public class ProdutosDAO {
 
     // Método para listar os produtos
